@@ -43,7 +43,7 @@ final class NetworkManager {
             let decoder = JSONDecoder()
             let articles = try decoder.decode(allData.self, from: data)
             self.totalCount = articles.articles.metadata.totalCount
-            self.currentCount += articles.articles.data.count
+            self.currentCount += articles.articles.metadata.pageSize
             return articles.articles.data
             
         } catch {
@@ -62,6 +62,7 @@ final class NetworkManager {
     
     func resetPageNumber() {
         currentPage = 1
+        currentCount = 0
     }
 }
 
