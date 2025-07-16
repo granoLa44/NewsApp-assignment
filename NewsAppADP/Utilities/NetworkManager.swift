@@ -18,20 +18,22 @@ final class NetworkManager {
     @State private var isLoading = false
     
     let configuration = URLSessionConfiguration.default
+    let token = "" //insert token
+    
+    init() {
+        configuration.httpAdditionalHeaders = ["Content-Type": "application/json"]
+        configuration.httpAdditionalHeaders?["Authorization"] = "Bearer \(token)"
+        session = URLSession(configuration: configuration)
+    }
     
     func getArticlesData() async throws -> [Article] {
         isLoading = true
         
         let urlString = "http://localhost:3000/api/articles?page=\(currentPage)"
-        let token = "" //insert token
-        
         
         guard let url = URL(string: urlString) else {
             throw APIError.invalidURL
         }
-        configuration.httpAdditionalHeaders = ["Content-Type": "application/json"]
-        configuration.httpAdditionalHeaders?["Authorization"] = "Bearer \(token)"
-        session = URLSession(configuration: configuration)
         
         let (data, response) = try await session.data(from: url)
         
