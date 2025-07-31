@@ -10,7 +10,6 @@ import SwiftUI
 struct ArticleCell: View {
     
     let article: Article
-    @EnvironmentObject private var favorites: FavoritesListViewModel
     
     var body: some View {
         HStack(alignment: .top, spacing: 12) {

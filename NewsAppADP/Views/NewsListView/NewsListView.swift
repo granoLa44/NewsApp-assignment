@@ -10,7 +10,6 @@ import SwiftUI
 struct NewsListView: View {
     
     @EnvironmentObject private var viewModel: NewsListViewModel
-    @EnvironmentObject private var favoritesVM: FavoritesListViewModel
     
     @State private var searchText: String = ""
     
@@ -30,7 +29,7 @@ struct NewsListView: View {
                 
                 
                 LazyVStack() {
-                    ForEach(filteredArticles, id: \.id) { article in
+                    ForEach(filteredArticles) { article in
                         NavigationLink(destination: ArticleDetailView(article: article)){
                             ArticleCell(article: article)}.buttonStyle(PlainButtonStyle())
                     }
@@ -44,7 +43,7 @@ struct NewsListView: View {
                     viewModel.loadMore()
                 }
             }
-            .refreshable {viewModel.resfresh()}
+            .refreshable {viewModel.refresh()}
             .navigationTitle("News")
             .toolbar {
                 Menu {

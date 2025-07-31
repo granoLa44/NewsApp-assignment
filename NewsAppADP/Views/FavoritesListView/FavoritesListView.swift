@@ -8,17 +8,15 @@ import SwiftUI
 
 struct FavoritesListView: View {
     
-    @EnvironmentObject var favoritesVM: FavoritesListViewModel
-    
     var body: some View {
         NavigationStack {
             
             ScrollView {
-                if favoritesVM.favoriteArticles.isEmpty {
+                if FavoritesManager.shared.favoriteArticles.isEmpty {
                     Text("No favorite articles yet.")
                 } else {
                     LazyVStack {
-                        ForEach(favoritesVM.favoriteArticles) { article in
+                        ForEach(FavoritesManager.shared.favoriteArticles) { article in
                             NavigationLink(destination: ArticleDetailView(article: article)){
                                 ArticleCell(article: article)}.buttonStyle(PlainButtonStyle())
                         }

@@ -4,18 +4,16 @@
 //
 //  Created by Lara on 13.07.2025..
 //
-import SwiftUI
+import Foundation
 
 final class NetworkManager {
     
     static let shared = NetworkManager()
-    private var session: URLSession!
+    private var session: URLSession
     
     var currentPage: Int  = 1
     private var currentCount: Int = 0
     private var totalCount: Int = 0
-    
-    @State private var isLoading = false
     
     let configuration = URLSessionConfiguration.default
     let token = "" //insert token
@@ -27,7 +25,6 @@ final class NetworkManager {
     }
     
     func getArticlesData() async throws -> [Article] {
-        isLoading = true
         
         let urlString = "http://localhost:3000/api/articles?page=\(currentPage)"
         
@@ -49,7 +46,6 @@ final class NetworkManager {
             return articles.articles.data
             
         } catch {
-            print(error)
             throw APIError.invalidDecoding
         }
     }

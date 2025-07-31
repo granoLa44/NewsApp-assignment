@@ -5,10 +5,9 @@
 //  Created by Lara on 15.07.2025..
 //
 
-import SwiftUI
+import Foundation
 
 
-    
 func formattedDate(_ publishedAt: String) -> String {
     let iso = ISO8601DateFormatter()
     iso.formatOptions = [.withInternetDateTime, .withFractionalSeconds]

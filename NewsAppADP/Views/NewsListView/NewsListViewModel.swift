@@ -5,7 +5,7 @@
 //  Created by Lara on 12.07.2025..
 //
 
-import SwiftUI
+import Foundation
 
 @MainActor
 final class NewsListViewModel: ObservableObject {
@@ -48,7 +48,7 @@ final class NewsListViewModel: ObservableObject {
         }
     }
     
-    func resfresh() {
+    func refresh() {
         articles.removeAll()
         NetworkManager.shared.resetPageNumber()
         getArticles()

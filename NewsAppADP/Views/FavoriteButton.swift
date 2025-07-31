@@ -10,14 +10,12 @@ struct FavoriteButton: View {
     
     let article: Article
 
-    @EnvironmentObject private var favoritesVM: FavoritesListViewModel
-
     var body: some View {
         Button {
-            favoritesVM.toggleFavorite(article: article)
+            FavoritesManager.shared.toggleFavorite(article: article)
         } label: {
-            Image(systemName: favoritesVM.isFavorite(article: article) ? "heart.fill" : "heart")
-                .foregroundColor(favoritesVM.isFavorite(article: article) ? .red : .gray)
+            Image(systemName: FavoritesManager.shared.isFavorite(article: article) ? "heart.fill" : "heart")
+                .foregroundColor(FavoritesManager.shared.isFavorite(article: article) ? .red : .gray)
         }
     }
 }
